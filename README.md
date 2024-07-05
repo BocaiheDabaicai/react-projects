@@ -1,7 +1,5 @@
 # React
 
-
-
 ## 零. 对react的介绍
 
 #### 0.1 为什么要使用react
@@ -27,3 +25,22 @@ react由可重用的构建模块、高代码相关性、核心分离三个重要
 - 函数名称开头字母大写
 
 - 返回一个可视化的组件
+
+`props.children`包含组件的下一级文本内容
+
+自定义组件的
+
+`onClick`方法接收的是函数，如果传递函数表达式，那么会在渲染阶段直接执行
+
+```jsx
+// 二者等同
+onclick = {()=>console.log('abc')}
+
+document.getElementById('xx').addEventListener('click',()=>{
+    console.log('abc')
+})
+```
+
+函数执行数据更改，但界面没有更新的问题
+
+函数执行数据更新是成功的，但是界面没有进行更新，默认状态下，react只会更新一次组件

@@ -39,7 +39,6 @@
 
 .main-contents{
   display: flex;
-  list-style: none;
 
 }
 .data{
@@ -48,4 +47,12 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.boxes{
+  display: flex;
+}
+
+li{
+  list-style: none;
 }

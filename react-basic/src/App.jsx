@@ -1,45 +1,19 @@
 import {useState} from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import Header from './components/Header.jsx'
+import CoreConcept from "./components/CoreConcept.jsx";
 import './App.css'
-import componentsImg from './assets/components.svg'
 import {CORE_CONCEPTS} from './data.js';
+import TabButton from "./components/TabButton.jsx";
 
-function genRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min)) + min
-}
-
-function Header() {
-    const description = genRandomInt(0,9)
-
-    return (
-        <div>
-            <a href="https://vitejs.dev" target="_blank">
-                <img src={viteLogo} className="logo" alt="Vite logo"/>
-            </a>
-            <a href="https://react.dev" target="_blank">
-                <img src={reactLogo} className="logo react" alt="React logo"/>
-            </a>
-            <p>Random number : {description}</p>
-        </div>
-    )
-}
-
-// eslint-disable-next-line react/prop-types
-function CoreConcept({image,title,description}){
-    // eslint-disable-next-line react/prop-types
-    // const {image,title,description} = props
-    return(
-        <li className="data">
-            <img src={image} alt="cgUA" width={64} height={64}/>
-            <h3>{title}</h3>
-            <p>{description}</p>
-        </li>
-    )
-}
 
 function App() {
     const [count, setCount] = useState(0)
+    const [tabContent,setTabContent] = useState('Please click a button')
+
+    function handlerLog(name){
+        console.log('Hello My friend!! ',name)
+        setTabContent(name)
+    }
 
     return (
         <>
@@ -47,11 +21,24 @@ function App() {
             <h1>Vite + React</h1>
             <h2>Core Concepts</h2>
             <ul className="main-contents">
-                <CoreConcept image={CORE_CONCEPTS[0].image} title={CORE_CONCEPTS[0].title} description={CORE_CONCEPTS[0].description}/>
+                <CoreConcept image={CORE_CONCEPTS[0].image} title={CORE_CONCEPTS[0].title}
+                             description={CORE_CONCEPTS[0].description}/>
                 <CoreConcept {...CORE_CONCEPTS[1]} />
                 <CoreConcept {...CORE_CONCEPTS[2]} />
                 <CoreConcept {...CORE_CONCEPTS[3]} />
             </ul>
+            <div>
+                <h2>Examples</h2>
+                <div className="boxes">
+                    <TabButton onSelect={()=>handlerLog('Components')}>Components</TabButton>
+                    <TabButton onSelect={()=>handlerLog('JSX')}>JSX</TabButton>
+                    <TabButton onSelect={()=>handlerLog('Props')}>Props</TabButton>
+                    <TabButton onSelect={()=>handlerLog('State')}>State</TabButton>
+                </div>
+                <div>
+                    {tabContent}
+                </div>
+            </div>
             <div className="card">
                 <button onClick={() => setCount((count) => count + 1)}>
                     count is {count}
