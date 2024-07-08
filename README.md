@@ -44,3 +44,5 @@ document.getElementById('xx').addEventListener('click',()=>{
 函数执行数据更改，但界面没有更新的问题
 
 函数执行数据更新是成功的，但是界面没有进行更新，默认状态下，react只会更新一次组件
+
+`useState`函数只能使用在组件函数的顶部

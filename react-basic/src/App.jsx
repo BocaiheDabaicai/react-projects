@@ -2,16 +2,16 @@ import {useState} from 'react'
 import Header from './components/Header.jsx'
 import CoreConcept from "./components/CoreConcept.jsx";
 import './App.css'
-import {CORE_CONCEPTS} from './data.js';
+import {CORE_CONCEPTS, EXAMPLES} from './data.js';
 import TabButton from "./components/TabButton.jsx";
 
 
 function App() {
     const [count, setCount] = useState(0)
-    const [tabContent,setTabContent] = useState('Please click a button')
+    const [tabContent, setTabContent] = useState()
 
-    function handlerLog(name){
-        console.log('Hello My friend!! ',name)
+    function handlerLog(name) {
+        console.log('Hello My friend!! ', name)
         setTabContent(name)
     }
 
@@ -30,13 +30,16 @@ function App() {
             <div>
                 <h2>Examples</h2>
                 <div className="boxes">
-                    <TabButton onSelect={()=>handlerLog('Components')}>Components</TabButton>
-                    <TabButton onSelect={()=>handlerLog('JSX')}>JSX</TabButton>
-                    <TabButton onSelect={()=>handlerLog('Props')}>Props</TabButton>
-                    <TabButton onSelect={()=>handlerLog('State')}>State</TabButton>
+                    <TabButton onSelect={() => handlerLog('components')}>Components</TabButton>
+                    <TabButton onSelect={() => handlerLog('jsx')}>JSX</TabButton>
+                    <TabButton onSelect={() => handlerLog('props')}>Props</TabButton>
+                    <TabButton onSelect={() => handlerLog('state')}>State</TabButton>
                 </div>
-                <div>
-                    {tabContent}
+                <div className='content'>
+                    {!tabContent ? 'Please click a button' : null}
+                    <h3>{EXAMPLES[tabContent]?.title}</h3>
+                    <p>{EXAMPLES[tabContent]?.description}</p>
+                    <pre><code>{EXAMPLES[tabContent]?.code}</code></pre>
                 </div>
             </div>
             <div className="card">
