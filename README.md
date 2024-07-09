@@ -46,3 +46,24 @@ document.getElementById('xx').addEventListener('click',()=>{
 函数执行数据更新是成功的，但是界面没有进行更新，默认状态下，react只会更新一次组件
 
 `useState`函数只能使用在组件函数的顶部
+
+**渲染表格**
+
+```jsx
+// 方式一，按名称传递属性
+// 方式二，解构对象传递
+// 方式三，数组方法遍历
+    <ul className="main-contents">
+        <CoreConcept image={CORE_CONCEPTS[0].image} title={CORE_CONCEPTS[0].title}
+                             description={CORE_CONCEPTS[0].description}/>
+        <CoreConcept {...CORE_CONCEPTS[1]} />
+        <CoreConcept {...CORE_CONCEPTS[2]} />
+        <CoreConcept {...CORE_CONCEPTS[3]} />
+        {CORE_CONCEPTS.map((item,index) => <CoreConcept key={index} {...item} />)}
+    </ul>
+
+```
+
+## 三. 深入React
+
+#### 3.1

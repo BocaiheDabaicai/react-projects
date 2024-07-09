@@ -57,6 +57,11 @@
   padding: 2rem 4rem;
 }
 
+.active{
+  background-color: #646;
+  color: #fff;
+}
+
 li{
   list-style: none;
 }

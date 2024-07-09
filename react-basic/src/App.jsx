@@ -21,19 +21,21 @@ function App() {
             <h1>Vite + React</h1>
             <h2>Core Concepts</h2>
             <ul className="main-contents">
-                <CoreConcept image={CORE_CONCEPTS[0].image} title={CORE_CONCEPTS[0].title}
+                {/*<CoreConcept image={CORE_CONCEPTS[0].image} title={CORE_CONCEPTS[0].title}
                              description={CORE_CONCEPTS[0].description}/>
                 <CoreConcept {...CORE_CONCEPTS[1]} />
                 <CoreConcept {...CORE_CONCEPTS[2]} />
-                <CoreConcept {...CORE_CONCEPTS[3]} />
+                <CoreConcept {...CORE_CONCEPTS[3]} />*/}
+                {/* eslint-disable-next-line react/jsx-key */}
+                {CORE_CONCEPTS.map((item) => <CoreConcept key={item.title} {...item} />)}
             </ul>
             <div>
                 <h2>Examples</h2>
                 <div className="boxes">
-                    <TabButton onSelect={() => handlerLog('components')}>Components</TabButton>
-                    <TabButton onSelect={() => handlerLog('jsx')}>JSX</TabButton>
-                    <TabButton onSelect={() => handlerLog('props')}>Props</TabButton>
-                    <TabButton onSelect={() => handlerLog('state')}>State</TabButton>
+                    <TabButton isSelected={tabContent === 'components'} onSelect={() => handlerLog('components')}>Components</TabButton>
+                    <TabButton isSelected={tabContent === 'jsx'} onSelect={() => handlerLog('jsx')}>JSX</TabButton>
+                    <TabButton isSelected={tabContent === 'props'} onSelect={() => handlerLog('props')}>Props</TabButton>
+                    <TabButton isSelected={tabContent === 'state'} onSelect={() => handlerLog('state')}>State</TabButton>
                 </div>
                 <div className='content'>
                     {!tabContent ? 'Please click a button' : null}
