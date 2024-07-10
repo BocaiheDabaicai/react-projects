@@ -61,9 +61,49 @@ document.getElementById('xx').addEventListener('click',()=>{
         <CoreConcept {...CORE_CONCEPTS[3]} />
         {CORE_CONCEPTS.map((item,index) => <CoreConcept key={index} {...item} />)}
     </ul>
-
 ```
 
 ## 三. 深入React
 
-#### 3.1
+#### 3.1 React原理
+
+**React生成的原理**
+
+生成一个根组件，并向下挂载子组件
+
+在组件函数进行标签元素返回的情况时，只能返回一个标签元素（可包含子标签）
+
+```jsx
+<Fragment></Fragment> // 实现包裹不需要父元素的情况
+<></> // 与Fragment作用相同
+```
+
+#### 3.2 组件的深度运用
+
+自定义按钮设计思路
+
+代码如下：
+
+```jsx
+// 按钮运用场景
+<Button mode="filled">Filled (Default)</Button>
+<Button mode="outline">Outline</Button>
+<Button mode="text">Text</Button>
+<Button Icon={HomeIcon}>Home</Button>
+<Button Icon={PlusIcon} mode="text">Add</Button>
+<Button mode="filled" disabled>Disabled</Button>
+<Button onClick={() => console.log('Clicked!')}>Click me</Button>
+
+// Button.js 的设计场景
+export default function Button({children,mode = 'filled',Icon,...props}) {
+
+ let classN = `button ${mode}-button`
+ let IconTag
+ if(Icon) {
+     classN += ' icon-button'
+     IconTag = <span className='button-icon'><Icon/></span>
+ }
+ 
+ return <button className={classN} {...props}>{Icon ? IconTag : null}<span>{children}</span></button>
+}
+```
