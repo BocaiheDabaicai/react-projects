@@ -107,3 +107,5 @@ export default function Button({children,mode = 'filled',Icon,...props}) {
  return <button className={classN} {...props}>{Icon ? IconTag : null}<span>{children}</span></button>
 }
 ```
+
+#### 3.3 骰子项目
