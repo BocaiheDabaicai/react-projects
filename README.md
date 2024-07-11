@@ -103,9 +103,19 @@ export default function Button({children,mode = 'filled',Icon,...props}) {
      classN += ' icon-button'
      IconTag = <span className='button-icon'><Icon/></span>
  }
- 
+
  return <button className={classN} {...props}>{Icon ? IconTag : null}<span>{children}</span></button>
 }
 ```
 
 #### 3.3 骰子项目
+
+**setState的正确用法**
+
+`setState(state => !state)`
+
+过去的使用方法是
+
+`setState(!state)`
+
+过去的使用方法会导致*在连续更新的情况下，后续的更新得不到上一次更新的值，只会拿到最初的值进行计算*，因此为了拿到中间更新后的值才采用这种方法
